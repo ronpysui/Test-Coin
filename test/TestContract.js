@@ -1,9 +1,10 @@
-const SimpleStorage=artifacts.require("SimpleStorage.sol");
-contract('SimpleStorage',()=>{
-  it("will input uint value",async()=>{
-    const getInput=await SimpleStorage.new();
-    await getInput.updateData(999);
-    const read=await getInput.readData();
-    assert(read.toString()==='999');
-  });
-});
+const StorageFactory=artifacts.require('StorageFactory.sol');
+
+contract('StorageFactory',()=>{
+  it('return 100^10',async()=>{
+    const storage=await StorageFactory.new();
+    await storage.addNum(100);
+    const readData=await storage.readData();
+    assert(readData.toString()===(100**10).toString())
+  })
+})
